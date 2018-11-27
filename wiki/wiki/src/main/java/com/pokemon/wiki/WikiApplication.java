@@ -10,4 +10,10 @@ public class WikiApplication {
 		SpringApplication.run(WikiApplication.class, args);
 	}
 
+	//todo
+	//add inmemory db
+	//add swagger
+	//create class PokemonDto
+	//
+
 }

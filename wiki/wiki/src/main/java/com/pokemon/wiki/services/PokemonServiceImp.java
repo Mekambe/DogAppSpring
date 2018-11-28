@@ -26,7 +26,7 @@ public class PokemonServiceImp implements PokemonService {
         HttpComponentsClientHttpRequestFactory requestFactory
                 = new HttpComponentsClientHttpRequestFactory();
         requestFactory.setHttpClient(httpClient);
-        PokemonDto pokemonDto = new RestTemplate(requestFactory).getForObject("http://pokeapi.co/api/v2/pokemon/1", PokemonDto.class);
+        PokemonDto pokemonDto = new RestTemplate(requestFactory).getForObject("http://pokeapi.co/api/v2/pokemon/"+id, PokemonDto.class);
         return pokemonDto;
     }
 

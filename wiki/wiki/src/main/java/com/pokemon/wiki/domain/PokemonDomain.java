@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -17,17 +18,18 @@ public class PokemonDomain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
 
     private String name;
 
     private int order1;
 
-    @OneToMany (mappedBy = "pokemonDto")
+
+    @OneToMany (mappedBy = "pokemonDto", cascade = CascadeType.ALL)
    private  List <AbilitiesDomains> abilities = new ArrayList<>();
 
-    @OneToOne (mappedBy = "pokemonDomain")
+    @OneToOne (mappedBy = "pokemonDomain", cascade = CascadeType.ALL)
    private SpeciesDomain species;
 
    @JsonProperty(value = "base_experience")
@@ -41,11 +43,11 @@ public class PokemonDomain {
         this.baseExperience = baseExperience;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -20,7 +20,7 @@ public class AbilitiesDomains {
     private int slot;
 
     private boolean isHidden;
-    @OneToOne (mappedBy = "abilitiesDto")
+    @OneToOne (mappedBy = "abilitiesDto", cascade = CascadeType.ALL)
     private AbilityDomain ability;
 
     public int getId() {

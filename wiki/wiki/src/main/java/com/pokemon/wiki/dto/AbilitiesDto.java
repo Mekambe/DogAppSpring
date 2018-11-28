@@ -22,7 +22,7 @@ public class AbilitiesDto {
 
     @Override
     public String toString() {
-        return "AbilitiesDto{" +
+        return "AbilitiesDomains{" +
                 "slot=" + slot +
                 ", isHidden=" + isHidden +
                 '}';

@@ -6,7 +6,7 @@ public class SpeciesDto {
 
     @Override
     public String toString() {
-        return "SpeciesDto{" +
+        return "SpeciesDomain{" +
                 "name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

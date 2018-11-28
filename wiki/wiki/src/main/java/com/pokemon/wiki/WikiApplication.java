@@ -13,7 +13,7 @@ public class WikiApplication {
 	//todo
 	//add inmemory db
 	//add swagger
-	//create class PokemonDto
+	//create class PokemonDomain
 	//
 
 }

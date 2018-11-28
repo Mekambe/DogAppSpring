@@ -27,7 +27,7 @@ public class PokemonDto {
 
     @Override
     public String toString() {
-        return "PokemonDto{" +
+        return "PokemonDomain{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", order=" + order +

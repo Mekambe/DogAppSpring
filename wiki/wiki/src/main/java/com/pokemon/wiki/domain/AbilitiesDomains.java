@@ -2,11 +2,13 @@ package com.pokemon.wiki.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 
 @Entity
+@ToString
 public class AbilitiesDomains {
 
     @Id

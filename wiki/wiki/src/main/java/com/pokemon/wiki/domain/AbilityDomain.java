@@ -2,13 +2,14 @@ package com.pokemon.wiki.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 
 @NoArgsConstructor
 @Entity
-
+@ToString
 public class AbilityDomain {
 
     @Id

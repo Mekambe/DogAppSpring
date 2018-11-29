@@ -25,7 +25,7 @@ public class PokemonServiceImp implements PokemonService {
                 .build();
         HttpComponentsClientHttpRequestFactory requestFactory
                 = new HttpComponentsClientHttpRequestFactory();
-        requestFactory.setHttpClient(httpClient);
+        requestFactory.setHttpClient(httpClient); // request factory ignoruje htpps
         PokemonDto pokemonDto = new RestTemplate(requestFactory).getForObject("http://pokeapi.co/api/v2/pokemon/"+id, PokemonDto.class);
         return pokemonDto;
     }

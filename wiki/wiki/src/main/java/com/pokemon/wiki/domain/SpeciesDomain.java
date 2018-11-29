@@ -3,11 +3,13 @@ package com.pokemon.wiki.domain;
 import com.pokemon.wiki.dto.PokemonDto;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
+@ToString
 public class SpeciesDomain {
 
 
@@ -50,9 +52,7 @@ public class SpeciesDomain {
         return pokemonDomain;
     }
 
-    public void setPokemonDomain(PokemonDomain pokemonDomain) {
-        this.pokemonDomain = pokemonDomain;
-    }
+
 
     public SpeciesDomain(String name, String url, PokemonDomain pokemonDomain) {
         this.name = name;

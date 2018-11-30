@@ -9,8 +9,11 @@ import com.pokemon.wiki.dto.AbilitiesDto;
 import com.pokemon.wiki.dto.AbilityDto;
 import com.pokemon.wiki.dto.PokemonDto;
 import com.pokemon.wiki.dto.SpeciesDto;
+import com.pokemon.wiki.exceptions.EmptyPokemonException;
 import com.pokemon.wiki.services.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +30,39 @@ public class PokemonController {
     public PokemonController(PokemonDomainRepository pokemonDomainRepository, PokemonService pokemonService) {
         this.pokemonDomainRepository = pokemonDomainRepository;
         this.pokemonService = pokemonService;
+    }
+
+    @GetMapping("/findPokemonName")
+    public PokemonDomain byName (@RequestParam (value = "name")String name){
+
+        PokemonDomain byName = pokemonDomainRepository.findByName(name);
+
+
+
+        return byName;
+    }
+
+    @GetMapping("/countPokemon")
+    public int countPokemon (){
+        //todo count pokemon in db
+        long count = pokemonDomainRepository.count();
+
+
+        return Math.toIntExact(count);
+
+    }
+
+    @DeleteMapping ("/countPokemon/{id}")
+    public void deletePokemon(@PathVariable("id") Long id) throws EmptyPokemonException {
+        Optional<PokemonDomain> byId = pokemonDomainRepository.findById(id);
+        if (!byId.isPresent()){
+            throw new EmptyPokemonException();
+
+        }else {pokemonDomainRepository.delete(byId.get());}
+
+
+
+
     }
 
     @RequestMapping("/pokemon")
@@ -53,8 +89,10 @@ public class PokemonController {
     }
 
     @PostMapping("/addPokemon")
-    public int addNewPokemonByBody(@RequestBody PokemonDto pokemonDto){
+    public int addNewPokemonByBody(@RequestBody PokemonDto pokemonDto) throws EmptyPokemonException {
 
+
+//        if ()throw new EmptyPokemonException();
 
         SpeciesDto speciesDto = new SpeciesDto();
         AbilitiesDto abilitiesDto = new AbilitiesDto();
@@ -76,6 +114,7 @@ public class PokemonController {
      pokemonDomain.setSpecies(speciesDomain);
      speciesDomain.setName(speciesDto.getName());
      speciesDomain.setUrl(speciesDto.getUrl());
+     speciesDomain.setPokemonDomain(pokemonDomain);
 
 
 
@@ -91,10 +130,10 @@ public class PokemonController {
     }
 
     @PostMapping("/addPokemonUrl")
-    public int addNewPokemonByBodyByUrlParams(@RequestParam (value = "name") String name,
-                                              @RequestParam (value = "order1") int order1,
-                                              @RequestParam (value = "speciesName") String speciesName,
-                                              @RequestParam (value = "speciesUrl") String speciesUrl){
+    public ResponseEntity<Integer> addNewPokemonByBodyByUrlParams(@RequestParam (value = "name") String name,
+                                                         @RequestParam (value = "order1") int order1,
+                                                         @RequestParam (value = "speciesName") String speciesName,
+                                                         @RequestParam (value = "speciesUrl") String speciesUrl){
 
 
 
@@ -110,8 +149,7 @@ public class PokemonController {
 
         PokemonDomain save = pokemonDomainRepository.save(pokemonDomain);
 
-
-        return Math.toIntExact(save.getId()) ;
+return ResponseEntity.status(HttpStatus.CREATED).body(Math.toIntExact(save.getId()));
     }
 
 }

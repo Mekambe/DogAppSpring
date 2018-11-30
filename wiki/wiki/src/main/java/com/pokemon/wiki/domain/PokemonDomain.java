@@ -1,6 +1,8 @@
 package com.pokemon.wiki.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -31,6 +33,7 @@ public class PokemonDomain {
     @OneToMany (mappedBy = "pokemonDto", cascade = CascadeType.ALL)
    private  List <AbilitiesDomains> abilities = new ArrayList<>();
 
+    @JsonManagedReference
     @OneToOne (mappedBy = "pokemonDomain", cascade = CascadeType.ALL)
    private SpeciesDomain species;
 

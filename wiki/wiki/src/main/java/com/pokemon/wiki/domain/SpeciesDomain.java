@@ -1,5 +1,7 @@
 package com.pokemon.wiki.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pokemon.wiki.dto.PokemonDto;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,12 @@ public class SpeciesDomain {
     private String name;
     private String url;
 
+    public void setPokemonDomain(PokemonDomain pokemonDomain) {
+        this.pokemonDomain = pokemonDomain;
+    }
+
+
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "pokemonDomain_id")
     private PokemonDomain pokemonDomain;

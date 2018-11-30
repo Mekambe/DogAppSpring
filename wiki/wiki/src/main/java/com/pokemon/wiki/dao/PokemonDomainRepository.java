@@ -10,4 +10,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PokemonDomainRepository extends JpaRepository<PokemonDomain, Long> {
+
+    PokemonDomain findByName(String name);
+
+
+
 }
